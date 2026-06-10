@@ -1,10 +1,9 @@
+# No build step — the site is pre-built and committed as static files.
+# Netlify just serves what's in the repo. Nothing to compile, nothing to cache wrong.
+
 [build]
-  command = "npm run build"
   publish = "."
   functions = "netlify/functions"
-
-[build.environment]
-  NODE_VERSION = "20"
 
 [[headers]]
   for = "/sitemap.xml"
@@ -19,7 +18,7 @@
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
 
-# optional: pretty URLs (/my-post -> /my-post.html)
+# pretty URLs: /my-post -> /my-post.html
 [[redirects]]
   from = "/:slug"
   to = "/:slug.html"

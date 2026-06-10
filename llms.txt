@@ -3,9 +3,7 @@
 > Field notes on private agentic AI for life-sciences validation, quality, and compliance. Published by Qualitum (https://qualitum.ai), a private, LLM-agnostic agentic AI platform for regulated industries.
 
 ## Posts
-- [Why validation evidence belongs in a system, not a document](https://blog.qualitum.ai/evidence-belongs-in-a-system.html): The validation record is the most valuable, least structured data in a pharma quality org. Here is what changes when it becomes live data in
-- [A practical read of Annex 11 §4 in a private-tenant deployment](https://blog.qualitum.ai/annex-11-private-tenant.html): Validation of the platform vs. validation of your configuration — where the line sits, and why private deployment makes the answer cleaner.
-- [Audit trails that reconstruct the sequence of activities](https://blog.qualitum.ai/audit-trails-reconstruct.html): Computer-generated, time-sequenced, tamper-evident — and reviewed continuously. What a regulator-grade audit log actually requires.
+- [Why life sciences needs a private validation platform](https://blog.qualitum.ai/why-life-sciences-needs-a-private-validation-platform.html): Validation is the slowest, most manual gate between a finished process and a released therapy. Here is why fixing it takes a private, agenti
 
 ## About
 - [Qualitum (main site)](https://qualitum.ai/): The private agentic AI platform for life sciences.
