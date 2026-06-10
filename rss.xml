@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>Qualitum Blog</title>
+  <link>https://blog.qualitum.ai/</link>
+  <description>Field notes on private agentic AI for validation, quality, and compliance.</description>
+  <language>en</language>
+    <item><title>Why validation evidence belongs in a system, not a document</title><link>https://blog.qualitum.ai/evidence-belongs-in-a-system.html</link><guid isPermaLink="true">https://blog.qualitum.ai/evidence-belongs-in-a-system.html</guid><pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate><description>The validation record is the most valuable, least structured data in a pharma quality org. Here is what changes when it becomes live data inside your tenant.</description></item>
+    <item><title>A practical read of Annex 11 §4 in a private-tenant deployment</title><link>https://blog.qualitum.ai/annex-11-private-tenant.html</link><guid isPermaLink="true">https://blog.qualitum.ai/annex-11-private-tenant.html</guid><pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate><description>Validation of the platform vs. validation of your configuration — where the line sits, and why private deployment makes the answer cleaner.</description></item>
+    <item><title>Audit trails that reconstruct the sequence of activities</title><link>https://blog.qualitum.ai/audit-trails-reconstruct.html</link><guid isPermaLink="true">https://blog.qualitum.ai/audit-trails-reconstruct.html</guid><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><description>Computer-generated, time-sequenced, tamper-evident — and reviewed continuously. What a regulator-grade audit log actually requires.</description></item>
+</channel></rss>
