@@ -57,6 +57,16 @@ export const handler = async (event) => {
     const cover       = clean(p.heroImageUrl || p.hero_image_url || p.coverImageUrl || p.featuredImageUrl || "");
     const coverAlt    = clean(p.heroImageAlt || p.imageAlt || p.coverAlt || "");
     const rawTags     = Array.isArray(p.tags) ? p.tags : (p.tags ? String(p.tags).split(",") : []);
+    // BabyLoveGrowth sends FAQs as structured data (faqJsonLd), not in the body.
+    // Convert them to a "## FAQ" section so the build makes FAQ rich-results.
+    let faqBlock = "";
+    try {
+      const faqs = (p.faqJsonLd?.mainEntity) || [];
+      if (Array.isArray(faqs) && faqs.length) {
+        faqBlock = "\n\n## FAQ\n" + faqs.map(f =>
+          `### ${clean(f.name)}\n${clean(f.acceptedAnswer?.text)}`).join("\n\n");
+      }
+    } catch (e) {}
     const tags        = rawTags.map(clean).filter(Boolean);
     const date        = new Date().toISOString().slice(0, 10);
 
@@ -72,7 +82,7 @@ export const handler = async (event) => {
       "---",
     ].filter(Boolean).join("\n");
 
-    const file = `${fm}\n\n${String(body).trim()}\n`;
+   const file = `${fm}\n\n${String(body).trim()}${faqBlock}\n`;
     await putFile(`posts/${slug}.md`, Buffer.from(file, "utf8").toString("base64"), `post: ${title}`);
 
     return {
