@@ -20,21 +20,57 @@ export function fmtDate(d) {
 
 const inline = (t) => esc(t)
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  .replace(/\*(\S(?:[^*\n]*?\S)?)\*/g, '<em>$1</em>')
   .replace(/`([^`]+)`/g, '<code>$1</code>')
-  .replace(/!\[([^\]]*)\]\(((?:https?:|data:)[^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
-  .replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
+  .replace(/!\[([^\]]*)\]\(((?:https?:|data:|\/)[^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
+  .replace(/\[([^\]]+)\]\(((?:https?:|\/|#)[^)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
 
 /* Markdown -> HTML. Adds id="" anchors to headings (helps AEO deep-linking). */
 export function markdown(md) {
   const lines = String(md || '').replace(/\r\n/g, '\n').split('\n');
   let html = '', list = null;
   const closeList = () => { if (list) { html += `</${list}>`; list = null; } };
-  for (const raw of lines) {
+  const isTableSep = (s) => /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$/.test(s || '');
+  const cells = (s) => s.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
     const line = raw.trim();
+
+    if (/^```/.test(line)) {                     // fenced code block
+      closeList();
+      const lang = line.replace(/^```+/, '').trim();
+      const buf = [];
+      i++;
+      while (i < lines.length && !/^```/.test(lines[i].trim())) { buf.push(lines[i]); i++; }
+      html += `<pre><code${lang ? ` class="language-${esc(lang)}"` : ''}>${esc(buf.join('\n'))}</code></pre>`;
+      continue;
+    }
+
     if (!line) { closeList(); continue; }
+
+    if (line.includes('|') && isTableSep(lines[i + 1])) {   // GFM table
+      closeList();
+      const head = cells(line);
+      i++;
+      const rows = [];
+      while (i + 1 < lines.length && lines[i + 1].includes('|') && lines[i + 1].trim() && !/^#{1,6}\s/.test(lines[i + 1].trim())) {
+        rows.push(cells(lines[i + 1])); i++;
+      }
+      const thead = `<thead><tr>${head.map(h => `<th>${inline(h)}</th>`).join('')}</tr></thead>`;
+      const tbody = `<tbody>${rows.map(r => `<tr>${head.map((_, c) => `<td>${inline(r[c] || '')}</td>`).join('')}</tr>`).join('')}</tbody>`;
+      html += `<table>${thead}${tbody}</table>`;
+      continue;
+    }
+
     let m;
-    if ((m = line.match(/^###\s+(.*)/)))      { closeList(); const t = m[1]; html += `<h3 id="${slugify(t)}">${inline(t)}</h3>`; }
-    else if ((m = line.match(/^##\s+(.*)/)))  { closeList(); const t = m[1]; html += `<h2 id="${slugify(t)}">${inline(t)}</h2>`; }
+    if ((m = line.match(/^(#{1,6})\s+(.*)/))) {   // headings; H1 -> H2 (page title is the only H1)
+      closeList();
+      let lvl = m[1].length; if (lvl === 1) lvl = 2;
+      const t = m[2];
+      html += `<h${lvl} id="${slugify(t)}">${inline(t)}</h${lvl}>`;
+    }
+    else if (/^([-*_])\1{2,}$/.test(line)) { closeList(); html += '<hr />'; }
     else if ((m = line.match(/^>\s+(.*)/)))   { closeList(); html += `<blockquote>${inline(m[1])}</blockquote>`; }
     else if ((m = line.match(/^[-*]\s+(.*)/))){ if (list !== 'ul') { closeList(); html += '<ul>'; list = 'ul'; } html += `<li>${inline(m[1])}</li>`; }
     else if ((m = line.match(/^\d+\.\s+(.*)/))){ if (list !== 'ol') { closeList(); html += '<ol>'; list = 'ol'; } html += `<li>${inline(m[1])}</li>`; }
