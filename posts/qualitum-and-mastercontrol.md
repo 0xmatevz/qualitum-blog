@@ -74,3 +74,6 @@ Where a client is resource-constrained, the scope of what the agents carry exten
 - [Qualitum and ValGenesis](https://blog.qualitum.ai/qualitum-and-valgenesis.html)
 - [Qualitum and Veeva Vault Validation Management](https://blog.qualitum.ai/qualitum-and-veeva-vault.html)
 - [Qualitum and the AI-Native Validation Cohort](https://blog.qualitum.ai/qualitum-and-ai-native-validation-platforms.html)
+- [Qualitum and Qualio](https://blog.qualitum.ai/qualitum-and-qualio.html)
+- [Qualitum and ETQ Reliance](https://blog.qualitum.ai/qualitum-and-etq-reliance.html)
+- [Qualitum and Greenlight Guru](https://blog.qualitum.ai/qualitum-and-greenlight-guru.html)

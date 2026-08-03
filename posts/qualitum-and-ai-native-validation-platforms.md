@@ -69,3 +69,6 @@ Our position: ask every vendor in this cohort, including us, for the baseline, t
 - [Qualitum and ValGenesis](https://blog.qualitum.ai/qualitum-and-valgenesis.html)
 - [Qualitum and Veeva Vault Validation Management](https://blog.qualitum.ai/qualitum-and-veeva-vault.html)
 - [Qualitum and MasterControl](https://blog.qualitum.ai/qualitum-and-mastercontrol.html)
+- [Qualitum and Qualio](https://blog.qualitum.ai/qualitum-and-qualio.html)
+- [Qualitum and ETQ Reliance](https://blog.qualitum.ai/qualitum-and-etq-reliance.html)
+- [Qualitum and Greenlight Guru](https://blog.qualitum.ai/qualitum-and-greenlight-guru.html)

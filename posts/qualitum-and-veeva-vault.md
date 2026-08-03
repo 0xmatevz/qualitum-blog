@@ -79,3 +79,6 @@ The delivery model is forward-deployed engineering rather than configuration by 
 - [Qualitum and ValGenesis](https://blog.qualitum.ai/qualitum-and-valgenesis.html)
 - [Qualitum and MasterControl](https://blog.qualitum.ai/qualitum-and-mastercontrol.html)
 - [Qualitum and the AI-Native Validation Cohort](https://blog.qualitum.ai/qualitum-and-ai-native-validation-platforms.html)
+- [Qualitum and Qualio](https://blog.qualitum.ai/qualitum-and-qualio.html)
+- [Qualitum and ETQ Reliance](https://blog.qualitum.ai/qualitum-and-etq-reliance.html)
+- [Qualitum and Greenlight Guru](https://blog.qualitum.ai/qualitum-and-greenlight-guru.html)
